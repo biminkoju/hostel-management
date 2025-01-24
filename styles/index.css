@@ -1,0 +1,12 @@
+.container {
+	display: flex;
+}
+.content {
+	width: fit-content;
+	text-align: center;
+}
+.log {
+	position: absolute;
+	padding-right: 10px;
+	right: 0;
+}
