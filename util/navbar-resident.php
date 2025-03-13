@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<link rel="stylesheet" href="../styles/index.css">
+<link rel="stylesheet" href="../styles/navbar.css">
 
 <header>
     <div class="container">
@@ -18,7 +18,7 @@
                 <a href="/hostel-management/resident/feedback.php">feedback</a>
             </menu>
         </div>
-        <div class="content log">
+        <div class="content logout">
             <form action="../logout.php" method="POST" onsubmit="return confirm('Are you sure you want to log out?');">
                 <button type="submit">Logout</button>
             </form>

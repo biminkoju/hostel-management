@@ -16,7 +16,7 @@
 
             </menu>
         </div>
-        <div class="content log">
+        <div class="content logout">
             <form action="../logout.php" method="POST" onsubmit="return confirm('Are you sure you want to log out?');">
                 <button type="submit">Logout</button>
             </form>
