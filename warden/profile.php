@@ -18,7 +18,7 @@ rightRedirect($user_data);
 </head>
 
 <body>
-    <?php require_once "../util/navbar-resident.php" ?>
+    <?php require_once "../util/navbar-warden.php" ?>
 
 
 </body>

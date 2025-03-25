@@ -18,6 +18,7 @@ $hostel_info_data = getHostelInfo($conn, $resident_info_data['hostel_id']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
 
 </head>
 

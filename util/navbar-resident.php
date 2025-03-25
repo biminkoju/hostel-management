@@ -1,21 +1,24 @@
 <?php
 
 ?>
-<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="/hostel-management/styles/navbar.css">
 
 <header>
     <div class="container">
-
+        <div class="content">
+            <a class="profile" href="/hostel-management/resident/profile.php"><img
+                    src="/hostel-management/assets/profile.jpg" alt="profile"></a>
+        </div>
         <div class="content">
 
-            <menu>
-                <a href="/hostel-management/resident/dashboard.php">dashboard</a>
-                <a href="/hostel-management/resident/profile.php">profile</a>
-                <a href="/hostel-management/resident/hostel-info.php">hostel-info</a>
-                <a href="/hostel-management/resident/room-info.php">room-info</a>
-                <a href="/hostel-management/resident/rent.php">rent</a>
-                <a href="/hostel-management/resident/maintenance-request.php">maintenance-request</a>
-                <a href="/hostel-management/resident/feedback.php">feedback</a>
+            <menu>|
+                <a href="/hostel-management/resident/dashboard.php">dashboard</a>|
+                <a href="/hostel-management/resident/profile.php">profile</a>|
+                <a href="/hostel-management/resident/hostel-info.php">hostel-info</a>|
+                <a href="/hostel-management/resident/room-info.php">room-info</a>|
+                <a href="/hostel-management/resident/rent.php">rent</a>|
+                <a href="/hostel-management/resident/maintenance-request.php">maintenance-request</a>|
+                <a href="/hostel-management/resident/feedback.php">feedback</a>|
             </menu>
         </div>
         <div class="content logout">

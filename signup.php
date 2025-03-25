@@ -41,19 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div id="box">
         <form method="post">
             username
-            <br>
             <input type="text" name="username">
-            <br>
             email
-            <br>
             <input type="email" name="email">
-            <br>
             password
-            <br>
             <input type="password" name="password">
-            <br>
             <label for="account_type">Choose your account type</label>
-            <br>
             <select id="account_type" name="account_type">
                 <option value="resident">resident</option>
                 <option value="warden">warden</option>
@@ -62,9 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <br>
             <input type="submit" value="Sign-up">
             <br>
-            <br>
-
-
             <a href="./login.php">click to login</a>
         </form>
     </div>

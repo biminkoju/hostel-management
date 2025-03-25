@@ -6,6 +6,7 @@ include("../helper/functions.php");
 $user_data = checklogin($conn);
 rightRedirect($user_data);
 
+$warden_info_data = getWardenInfo($conn, $user_data["user_id"]);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ rightRedirect($user_data);
 
 <body>
     <?php require_once "../util/navbar-warden.php" ?>
-
+    <h1>welcome <?php echo $user_data["username"] ?></h1>
 
 </body>
 

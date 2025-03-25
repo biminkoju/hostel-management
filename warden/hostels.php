@@ -7,8 +7,10 @@ $user_data = checklogin($conn);
 rightRedirect($user_data);
 
 $warden_info_data = getWardenInfo($conn, $user_data['user_id']);
+$warden_id = $warden_info_data['warden_id'];
 
-$hostels = getHostels($conn, $warden_info_data['warden_id']);
+$hostels = getHostels($conn, $warden_id);
+
 
 ?>
 
@@ -41,12 +43,18 @@ $hostels = getHostels($conn, $warden_info_data['warden_id']);
             <th>hostel location</th>
             <th>hostel capacity</th>
         </tr>
-        <?php foreach ($hostels as $hostel) { ?>
+        <?php for ($i = 0; $i < count($hostels); $i++) {
+            $hostel = $hostels[$i];
+
+            ?>
             <tr>
                 <td class="counterCell"></td>
-                <td><?php echo $hostel['hostel_name'] ?></td>
-                <td><?php echo $hostel['address'] ?></td>
-                <td><?php echo $hostel['capacity'] ?></td>
+                <td><a href="./hostel.php?id=<?php echo $hostel['hostel_id'] ?>">
+                        <?php echo $hostel['hostel_name'] ?>
+                    </a>
+                </td>
+                <td><?php echo $hostel['hostel_address'] ?></td>
+                <td><?php echo $hostel['hostel_capacity'] ?></td>
             </tr>
         <?php } ?>
     </table>

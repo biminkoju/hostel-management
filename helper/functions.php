@@ -1,4 +1,5 @@
 <?php
+echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">';
 function checklogin($con)
 {
     if (isset($_SESSION['user_id'])) {
@@ -89,6 +90,20 @@ function getHostelInfo($con, $hostel_id)
     }
 }
 
+function getHostelInfoWarden($con, $hostel_id)
+{
+    $hostel_id = mysqli_real_escape_string($con, $hostel_id);
+    $hostel_info_query = "SELECT * FROM Hostels WHERE hostel_id='$hostel_id' LIMIT 1;";
+    $hostel_info_result = mysqli_query($con, $hostel_info_query);
+
+    if ($hostel_info_result && mysqli_num_rows($hostel_info_result) > 0) {
+        return mysqli_fetch_assoc($hostel_info_result);
+    } else {
+        echo "Error: " . $hostel_info_query . "<br>" . mysqli_error($con);
+        return ['hostel_name' => 'Unknown Hostel'];
+    }
+}
+
 function getWardenInfo($con, $warden_id)
 {
     $warden_id = mysqli_real_escape_string($con, $warden_id);
@@ -98,21 +113,37 @@ function getWardenInfo($con, $warden_id)
     if ($warden_info_result && mysqli_num_rows($warden_info_result) > 0) {
         return mysqli_fetch_assoc($warden_info_result);
     } else {
-        echo "Error: " . $warden_info_query . "<br>" . mysqli_error($con);
+        echo "you're not registered as a warden yet please register as a warden at <a href='../warden/warden-register.php'>warden registery</a> <br>";
         return [];
     }
 }
 
 function getHostels($con, $warden_id)
 {
-
     $hostels_query = "SELECT * FROM Hostels WHERE warden_id='$warden_id';";
     $hostels_result = mysqli_query($con, $hostels_query);
-
+    $i = 0;
+    $hostels = array();
     if ($hostels_result && mysqli_num_rows($hostels_result) > 0) {
-        return mysqli_fetch_all($hostels_result, MYSQLI_ASSOC);
+        error_log("Hostels found");
+        while ($row = mysqli_fetch_assoc($hostels_result)) {
+            array_push($hostels, $row);
+        }
+        return $hostels;
     } else {
-        echo "Error: " . $hostels_query . "<br>" . mysqli_error($con);
+        error_log("No hostels found");
+        echo "you do not have any hostels under your supervision <a href='./hostels/create-new-hostel.php'>create one</a> <br>";
         return [];
+    }
+}
+
+function isRegistered($con, $warden_id)
+{
+    $warden_id = mysqli_real_escape_string($con, $warden_id);
+    $warden_query = "SELECT * FROM Wardens WHERE warden_id='$warden_id' LIMIT 1;";
+    $warden_result = mysqli_query($con, $warden_query);
+
+    if ($warden_result && mysqli_num_rows($warden_result) > 0) {
+        header("Location: ./dashboard.php");
     }
 }

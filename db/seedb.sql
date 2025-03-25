@@ -1,0 +1,19 @@
+--@block
+SELECT *
+from Users;
+SELECT *
+FROM Wardens;
+SELECT *
+from Residents;
+SELECT *
+from Hostels;
+SELECT *
+from Maintenance;
+SELECT *
+from Payments;
+SELECT *
+from Complaints;
+SELECT *
+from Feedbacks;
+SELECT *
+from Announcements;
