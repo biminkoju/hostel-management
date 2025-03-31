@@ -20,7 +20,7 @@ $hostels = getHostels($conn, $warden_id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>complaints</title>
+    <title>maintenance</title>
     <style>
         table {
             counter-reset: tableCount;
@@ -42,32 +42,32 @@ $hostels = getHostels($conn, $warden_id);
         ?>
 
         <p>
-            complaints from "<a
+            maintenance from "<a
                 href="./hostel.php?id=<?php echo $hostel['hostel_id'] ?>"><?php echo $hostel['hostel_name'] ?></a>" hostel:
         </p>
 
         <table border=1>
             <tr>
                 <th>S.N</th>
-                <th>complaint id</th>
-                <th>resident name</th>
+                <th>maintenance id</th>
+                <th>amount</th>
                 <th>status</th>
             </tr>
             <?php
-            $complaints = getComplaints($conn, $hostel['hostel_id']);
-            for ($j = 0; $j < count($complaints); $j++) {
-                $complaint = $complaints[$j];
+            $maintenances = getMaintenaces($conn, $hostel['hostel_id']);
+            for ($j = 0; $j < count($maintenances); $j++) {
+                $maintenance = $maintenances[$j];
                 ?>
 
                 <tr>
                     <td class="counterCell"></td>
                     <td>
-                        <a href="./complaint?id=<?php echo $complaint['complaint_id'] ?>">
-                            <?php echo $complaint['complaint_id'] ?>
+                        <a href="./complaint?id=<?php echo $maintenance['maintanance_id'] ?>">
+                            <?php echo $maintenance['maintanance_id'] ?>
                         </a>
                     </td>
-                    <td><?php echo $complaint['resident_name'] ?></td>
-                    <td><?php echo $complaint['status'] ?></td>
+                    <td><?php echo $maintenance['amount'] ?></td>
+                    <td><?php echo $maintenance['status'] ?></td>
                 </tr>
             </table>
         <?php } ?>

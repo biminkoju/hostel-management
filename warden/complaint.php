@@ -9,11 +9,14 @@ rightRedirect($user_data);
 $warden_info_data = getWardenInfo($conn, $user_data["user_id"]);
 
 $warden_id = $warden_info_data["warden_id"];
-// Get the ID from the URL (e.g., example.com/hostel.php?id=1) 
 $id = isset($_GET['id']) ? $_GET['id'] : 0;
 
-// Get the hostel information
-$hostel = getHostelInfoWarden($conn, $id);
+
+$complaint = getComplaint($conn, $id);
+$hostel_id = $complaint['hostel_id'];
+
+$resident = getResidentInfo($conn, $complaint['resident_id']);
+$hostel = getHostelInfoWarden($conn, $hostel_id);
 
 $hostel_warden_id = $hostel['warden_id'];
 
@@ -22,7 +25,6 @@ if ($warden_id != $hostel_warden_id) {
     header("Location: ./hostels.php");
     die;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -31,17 +33,16 @@ if ($warden_id != $hostel_warden_id) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hostel dashboard</title>
+    <title>complaint</title>
 </head>
 
 <body>
     <?php require_once "../util/navbar-warden.php" ?>
-    <?php require_once "../util/sidebar-hostel.php" ?>
-    <h1>this is the <?php echo $hostel["hostel_name"] ?> dashboard </h1>
-    <p>this hostel is in <?php echo $hostel["hostel_address"] ?></p>
-    <p>the hostel owner name is <?php echo $hostel["hostel_owner"] ?></p>
-    <p>this hostel has the capacity for <?php echo $hostel["hostel_capacity"] ?></p>
-    <p>this hostel has the followng amenities <?php echo $hostel["amenities"] ?></p>
+    <p>this is the complaint made by the resident of room number <?php echo $resident["room_number"] ?> </p>
+    <p>complaint id: <?php echo $complaint["complaint_id"] ?></p>
+    <p>complaint made on: <?php echo $complaint["date_of_complaint"] ?></p>
+    <p>complaint: <?php echo $complaint["description"] ?></p>
+    <p>status: <?php echo $complaint["status"] ?></p>
 
 </body>
 

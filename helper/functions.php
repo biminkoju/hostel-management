@@ -122,7 +122,6 @@ function getHostels($con, $warden_id)
 {
     $hostels_query = "SELECT * FROM Hostels WHERE warden_id='$warden_id';";
     $hostels_result = mysqli_query($con, $hostels_query);
-    $i = 0;
     $hostels = array();
     if ($hostels_result && mysqli_num_rows($hostels_result) > 0) {
         error_log("Hostels found");
@@ -136,6 +135,64 @@ function getHostels($con, $warden_id)
         return [];
     }
 }
+function getComplaints($con, $hostel_id)
+{
+    $complaints_query = "SELECT * FROM Complaints WHERE hostel_id='$hostel_id';";
+    $complaints_result = mysqli_query($con, $complaints_query);
+    $complaints = array();
+    if ($complaints_result && mysqli_num_rows($complaints_result) > 0) {
+        error_log("Hostels found");
+        while ($row = mysqli_fetch_assoc($complaints_result)) {
+            array_push($complaints, $row);
+        }
+        return $complaints;
+    } else {
+        echo "<p>you do not have any complaints under your supervision, nice job!</p>";
+        return [];
+    }
+}
+function getMaintenaces($con, $hostel_id)
+{
+    $complaints_query = "SELECT * FROM Maintenance WHERE hostel_id='$hostel_id';";
+    $complaints_result = mysqli_query($con, $complaints_query);
+    $complaints = array();
+    if ($complaints_result && mysqli_num_rows($complaints_result) > 0) {
+        error_log("Hostels found");
+        while ($row = mysqli_fetch_assoc($complaints_result)) {
+            array_push($complaints, $row);
+        }
+        return $complaints;
+    } else {
+        echo "<p>you do not have any maintenances queued under your supervision, nice job!</p>";
+        return [];
+    }
+}
+function getMaintenace($con, $maintanence_id)
+{
+    $maintenance_query = "SELECT * FROM Maintenance WHERE maintanance_id='$maintanence_id' LIMIT 1;";
+    $maintenance_result = mysqli_query($con, $maintenance_query);
+    $complaints = array();
+    if ($maintenance_result && mysqli_num_rows($maintenance_result) > 0) {
+        error_log("Hostels found");
+        return mysqli_fetch_assoc($maintenance_result);
+    } else {
+        header("Location: ./maintenances.php");
+        die;
+    }
+}
+function getComplaint($con, $complaint_id)
+{
+    $complaints_query = "SELECT * FROM Complaints WHERE complaint_id='$complaint_id' LIMIT 1;";
+    $complaints_result = mysqli_query($con, $complaints_query);
+    if ($complaints_result && mysqli_num_rows($complaints_result) > 0) {
+        error_log("Hostels found");
+        return mysqli_fetch_assoc($complaints_result);
+    } else {
+        header("Location: ./complaints.php");
+        die;
+    }
+}
+
 
 function isRegistered($con, $warden_id)
 {
